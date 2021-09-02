@@ -1,0 +1,39 @@
+[submodule "externals/browser"]
+	path = externals/browser
+	url = https://github.com/melowntech/vts-browser-cpp.git
+[submodule "externals/geographiclib/geographiclib"]
+	path = externals/geographiclib/geographiclib
+	url = https://github.com/znly/geographiclib.git
+[submodule "externals/boost/boost"]
+	path = externals/boost/boost
+	url = https://github.com/melowntech/boost-cmake.git
+[submodule "externals/jsoncpp/jsoncpp"]
+	path = externals/jsoncpp/jsoncpp
+	url = https://github.com/open-source-parsers/jsoncpp.git
+[submodule "externals/eigen/eigen"]
+	path = externals/eigen/eigen
+	url = https://github.com/eigenteam/eigen-git-mirror
+[submodule "externals/jpeg/jpeg"]
+	path = externals/jpeg/jpeg
+	url = https://github.com/libjpeg-turbo/libjpeg-turbo
+[submodule "externals/png/png"]
+	path = externals/png/png
+	url = https://github.com/glennrp/libpng
+[submodule "externals/sdl/sdl"]
+	path = externals/sdl/sdl
+	url = https://github.com/spurious/SDL-mirror
+[submodule "externals/proj/proj"]
+	path = externals/proj/proj
+	url = https://github.com/OSGeo/proj.4.git
+[submodule "externals/curl/curl"]
+	path = externals/curl/curl
+	url = https://github.com/curl/curl
+[submodule "externals/harfbuzz/harfbuzz"]
+	path = externals/harfbuzz/harfbuzz
+	url = https://github.com/harfbuzz/harfbuzz.git
+[submodule "externals/freetype/freetype2"]
+	path = externals/freetype/freetype2
+	url = https://github.com/melowntech/freetype2.git
+[submodule "externals/zlib-ng/zlib-ng"]
+	path = externals/zlib-ng/zlib-ng
+	url = https://github.com/zlib-ng/zlib-ng.git

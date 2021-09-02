@@ -1,0 +1,93 @@
+#!/usr/bin/env python
+# -*- python -*-
+
+from __future__ import print_function
+
+import sys
+
+if (sys.version_info >= (3, 0)):
+    as_buffer=lambda arg:bytes(arg, "utf-8")
+else:
+    as_buffer=lambda arg:arg
+
+slash_char = as_buffer('/');
+space_char = as_buffer(' ');
+terminator = as_buffer("\0\n\"");
+
+def get_rodata(path):
+    """
+    Get offset and size of .rodata section from given elf file
+    """
+    from elftools.elf.elffile import ELFFile
+    file = open(path, "rb")
+    elf = ELFFile(file)
+
+    def get_section(elf, name):
+        for section in elf.iter_sections():
+            if section.name == name: return section
+        return none
+
+    rodata = get_section(elf, ".rodata")
+    if rodata is None:
+        # no .rodata section -> ignore
+        return (0, 0)
+
+    return (rodata["sh_offset"], rodata["sh_size"])
+
+def process(s):
+    # find last slash and erase everything before
+    global slash_char, space
+    slash = s.rfind(slash_char)
+    if slash == -1:
+        return s
+
+    # replace everything before slash with space
+    return space_char * slash
+
+def findFirstOf(data, index, chars):
+    ret = len(data)
+    for c in chars:
+        end = data.find(c, index)
+        if (end >= 0) and (end < ret):
+            ret = end
+    if ret < len(data):
+        return ret
+    return -1
+
+def cutAndProcess(f, off, data, index):
+    # terminator is first occurence of NUL, newline or quotes character
+    global terminator
+    end = findFirstOf(data, index, terminator)
+    if end == -1:
+        return len(data)
+
+    s = data[index:end]
+    o = process(s)
+    print(("0x{:08x} found string '{}' ({} bytes), writing '{}' ({} bytes)"
+               .format(off + index, s, len(s), o, len(o)))
+           , file=sys.stderr)
+    if len(o):
+        f.seek(off + index)
+        f.write(o);
+    return end + 1;
+
+f = sys.argv[1]
+prefix = as_buffer(sys.argv[2])
+sbegin, slen = get_rodata(f)
+
+# no .rodata section -> ignore
+if not slen:
+    sys.exit(0)
+
+ifile = open(f, "r+b")
+
+ifile.seek(sbegin)
+src = ifile.read(slen)
+
+ifile.seek(sbegin)
+i = 0
+while i < slen:
+    b = src.find(prefix, i)
+    if b == -1:
+        break;
+    i = cutAndProcess(ifile, sbegin, src, b)

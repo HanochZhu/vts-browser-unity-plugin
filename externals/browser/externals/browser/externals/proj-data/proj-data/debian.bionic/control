@@ -1,0 +1,13 @@
+Source: proj-data-vts
+Section: non-free/citationtech
+Priority: extra
+Maintainer: Vaclav Blazek <vaclav.blazek@citationtech.net>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.8.4
+Homepage: https://trac.citationtech.net/wiki/iris
+
+Package: proj-data-vts
+Architecture: all
+Depends: proj-data
+Description: Proj-data needed by various VTS programs.
+ Constains various (geoid) grids.

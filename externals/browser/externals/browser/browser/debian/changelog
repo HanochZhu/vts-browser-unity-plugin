@@ -1,0 +1,148 @@
+vts-browser (0.22) melown-xenial; urgency=medium
+
+  * dithering-based lod blending
+
+ -- Tomas Maly <tomas.maly@melown.com>  Mon, 30 Sep 2019 16:29:53 +0200
+
+vts-browser (0.21) melown-xenial; urgency=medium
+
+  * geodata icons
+  * fps compensation for navigation
+
+ -- Tomas Maly <tomas.maly@melown.com>  Wed, 21 Aug 2019 10:49:06 +0200
+
+vts-browser (0.20) melown-xenial; urgency=medium
+
+  * geodata function trim
+
+ -- Tomas Maly <tomas.maly@melown.com>  Mon, 15 Apr 2019 15:45:24 +0200
+
+vts-browser (0.19) melown-xenial; urgency=medium
+
+  * geodata part 1
+
+ -- Tomas Maly <tomas.maly@melown.com>  Thu, 11 Apr 2019 12:54:45 +0000
+
+vts-browser (0.18) melown-xenial; urgency=medium
+
+  * lod blending
+  * grids rendering
+  * better support for multiple cameras and navigations
+  * improved coarseness test (disks approximation)
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 11 Jan 2019 10:32:16 +0100
+
+vts-browser (0.17) melown-xenial; urgency=medium
+
+  * load options from file
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 13 Jul 2018 15:11:45 +0200
+
+vts-browser (0.16) melown-xenial; urgency=medium
+
+  * fix clamp in uv
+
+ -- Tomas Maly <tomas.maly@melown.com>  Thu, 12 Jul 2018 17:30:58 +0200
+
+vts-browser (0.15) melown-xenial; urgency=medium
+
+  * faster caching
+  * atmosphere in mapconfig
+
+ -- Tomas Maly <tomas.maly@melown.com>  Tue, 10 Jul 2018 12:34:53 +0200
+
+vts-browser (0.14) melown-xenial; urgency=medium
+
+  * persistent mouse sensitivity setting
+  * improved culling
+
+ -- Tomas Maly <tomas.maly@melown.com>  Thu, 03 May 2018 15:43:44 +0200
+
+vts-browser (0.13) melown-xenial; urgency=medium
+
+  * atmosphere
+
+ -- Tomas Maly <tomas.maly@melown.com>  Thu, 08 Mar 2018 15:26:24 +0100
+
+vts-browser (0.12) melown-xenial; urgency=medium
+
+  * compas
+  * improvements to navigation
+  * improvements to traversal
+
+ -- Tomas Maly <tomas.maly@melown.com>  Wed, 27 Dec 2017 18:13:07 +0100
+
+vts-browser (0.11) melown-xenial; urgency=medium
+
+  * added rendering library
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 10 Nov 2017 15:25:25 +0100
+
+vts-browser (0.10) melown-xenial; urgency=medium
+
+  * improved atmosphere
+  * spacebar is north-up button
+
+ -- Tomas Maly <tomas.maly@melown.com>  Mon, 14 Aug 2017 10:38:08 +0200
+
+vts-browser (0.9) melown-xenial; urgency=medium
+
+  * atmosphere
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 04 Aug 2017 15:44:32 +0200
+
+vts-browser (0ubuntu8) melown-xenial; urgency=medium
+
+  * dependency on proj-data-vts
+
+ -- Tomas Maly <tomas.maly@melown.com>  Mon, 17 Jul 2017 10:53:30 +0200
+
+vts-browser (0ubuntu7) melown-xenial; urgency=medium
+
+  * direct position input
+  * tilt limit
+  * search urls in mapconfig browser options
+  * virtual surfaces
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 14 Jul 2017 12:27:35 +0200
+
+vts-browser (0ubuntu6) melown-xenial; urgency=medium
+
+  * perceptually invariant navigation
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 23 Jun 2017 17:33:21 +0200
+
+vts-browser (0ubuntu5) melown-xenial; urgency=medium
+
+  * Improved navigation, dblclick
+  * Prioritized downloads
+
+ -- Tomas Maly <tomas.maly@melown.com>  Mon, 12 Jun 2017 17:06:01 +0200
+
+vts-browser (0ubuntu4) melown-xenial; urgency=medium
+
+  * Free navigation
+  * Search
+  * Credits
+
+ -- Tomas Maly <tomas.maly@melown.com>  Tue, 30 May 2017 14:30:00 +0200
+
+vts-browser (0ubuntu3) melown-xenial; urgency=medium
+
+  * Support for libcurl with http2
+  * Reduced memory usage
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 12 May 2017 14:19:49 +0200
+
+vts-browser (0ubuntu2) melown-xenial; urgency=medium
+
+  * Support for OpenGL 3.3
+  * Many other new features.
+
+ -- Tomas Maly <tomas.maly@melown.com>  Tue, 02 May 2017 17:23:56 +0200
+
+vts-browser (0ubuntu1) melown-xenial; urgency=low
+
+  * Initial Build.
+
+ -- Tomas Maly <tomas.maly@melown.com>  Fri, 07 Apr 2017 15:22:25 +0200

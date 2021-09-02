@@ -1,0 +1,14 @@
+
+set(GeographicLib_LIBRARIES GeographicLib_STATIC)
+get_target_property(GeographicLib_INCLUDE_DIRS GeographicLib_STATIC INTERFACE_INCLUDE_DIRECTORIES)
+set(GeographicLib_LIBRARY ${GeographicLib_LIBRARIES})
+set(GeographicLib_INCLUDE_DIR ${GeographicLib_INCLUDE_DIRS})
+set(GeographicLib_FOUND TRUE)
+
+set(GEOGRAPHICLIB_LIBRARIES ${GeographicLib_LIBRARIES})
+set(GEOGRAPHICLIB_INCLUDE_DIRS ${GeographicLib_INCLUDE_DIRS})
+set(GEOGRAPHICLIB_LIBRARY ${GeographicLib_LIBRARIES})
+set(GEOGRAPHICLIB_INCLUDE_DIR ${GeographicLib_INCLUDE_DIRS})
+set(GEOGRAPHICLIB_FOUND TRUE)
+
+

@@ -1,0 +1,208 @@
+name: Tests
+on: [ push, pull_request ]
+
+jobs:
+  Windows:
+    runs-on: windows-${{ matrix.os-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version: [ 2016, latest ]
+        build-arch: [ Win32, x64 ]
+        build-config: [ debug, release ]
+        python-version: [ 2.x, 3.x ]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      shell: bash
+      run: |
+        export MSYS=winsymlinks:nativestrict
+        git config --global core.symlinks true
+        git submodule update --init --recursive
+
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '${{ matrix.python-version }}'
+
+    - name: Configure
+      shell: bash
+      run: |
+        mkdir build
+        cd build
+        cmake -A${{ matrix.build-arch }} -DCMAKE_BUILD_TYPE=${{ matrix.build-config }} ..
+
+    - name: Build
+      shell: bash
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }}
+
+
+
+  Uwp:
+    runs-on: windows-${{ matrix.os-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version: [ 2016, latest ]
+        build-config: [ debug, release ]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      shell: bash
+      run: |
+        export MSYS=winsymlinks:nativestrict
+        git config --global core.symlinks true
+        git submodule update --init --recursive
+
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '3.x'
+
+    - name: Configure
+      shell: bash
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-config }} -DCMAKE_TOOLCHAIN_FILE=$PWD/../externals/browser/browser/cmake/uwp.toolchain.cmake ..
+
+    - name: Build the browser
+      shell: bash
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }} --target vts-browser
+
+    - name: Build (allowed to fail)
+      # the rendering library is currently impossible to build without manually adding nuget package
+      continue-on-error: true
+      shell: bash
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }}
+
+
+
+  Ubuntu:
+    runs-on: ubuntu-${{ matrix.os-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version: [ 16.04, latest ]
+        build-config: [ debug, release ]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      run: |
+        git submodule update --init --recursive
+
+    - name: Install packages
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y nasm python-minimal
+
+    - name: Configure
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-config }} ..
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }} -- -j3
+
+
+
+  Wasm:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build-config: [ debug, release ]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      run: |
+        git submodule update --init --recursive
+
+    - name: Install emscripten
+      run: |
+        cd ..
+        git clone https://github.com/emscripten-core/emsdk.git
+        cd emsdk
+        ./emsdk install latest
+        ./emsdk activate latest
+
+    - name: Configure
+      run: |
+        source ../emsdk/emsdk_env.sh
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-config }} -DEMSCRIPTEN_PREFIX=$EMSDK/upstream/emscripten -DCMAKE_TOOLCHAIN_FILE=$PWD/../externals/browser/browser/cmake/wasm.toolchain.cmake ..
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }} -- -j3
+
+
+
+  Macos:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build-config: [ debug, release ]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      run: |
+        git submodule update --init --recursive
+
+    - name: Configure
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=${{ matrix.build-config }} ..
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }} -- -j3
+
+
+
+  Ios:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build-config: [ debug, release ]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Checkout submodules
+      run: |
+        git submodule update --init --recursive
+
+    - name: Configure
+      run: |
+        mkdir build
+        cd build
+        cmake -GXcode -DCMAKE_BUILD_TYPE=${{ matrix.build-config }} -DCMAKE_TOOLCHAIN_FILE=$PWD/../externals/browser/browser/cmake/ios.toolchain.cmake ..
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build-config }}

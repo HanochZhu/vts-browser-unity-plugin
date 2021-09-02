@@ -1,0 +1,48 @@
+Source: vts-browser
+Section: non-free/citationtech
+Priority: extra
+Maintainer: Tomas Maly <tomas.maly@melown.com>
+Build-Depends: debhelper (>= 7.0.50~)
+               , libboost-all-dev (>= 1.49)
+               , libeigen3-dev (>= 3.1.0-1)
+               , libgdal-dev (>= 2.0)
+               , libproj-dev (>= 4.9)
+               , libgeographic-dev
+               , libjsoncpp-dev
+               , libsdl2-dev
+Standards-Version: 3.8.4
+Homepage: https://github.com/Melown/vts-browser-cpp
+
+Package: libvts-browser0
+Architecture: any
+Depends: ${shlibs:Depends}
+			, ${misc:Depends}
+			, proj-data-vts
+Description: VTS Browser library
+ VTS Browser c++ library.
+
+Package: libvts-browser-dbg
+Architecture: any
+Depends: ${misc:Depends}
+			, libvts-browser0 (= ${binary:Version})
+Description: VTS Browser debug symbols
+ Debug symbols for VTS Browser library.
+
+Package: libvts-browser-dev
+Architecture: any
+Depends: ${misc:Depends}
+			, libvts-browser0 (= ${binary:Version})
+Suggests: libeigen3-dev (>= 3.1.0-1)
+Description: VTS Browser developer files
+ Developer files for VTS Browser library.
+
+Package: vts-browser-desktop
+Architecture: any
+Depends: ${shlibs:Depends}
+			, ${misc:Depends}
+			, libvts-browser0 (= ${binary:Version})
+Description: Example application using VTS Browser
+ Comprehensive example application that uses VTS Browser.
+
+
+
