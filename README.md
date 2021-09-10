@@ -1,3 +1,6 @@
+# VTS Modify note
+expose an API that can get altitude via longtitude and latitude.
+
 # VTS Browser Integration Plugin For Unity 3D Game Engine
 
 [VTS Browser CPP](https://github.com/melowntech/vts-browser-cpp) is a collection of libraries that bring VTS client capabilities to your native applications.
